@@ -2,8 +2,11 @@
 
 export default class AbstractController {
 
-    constructor(namespace) {
-        this.namespace = namespace
+    constructor() {
         this.routes = []
+    }
+
+    sendResponse(h, statusCode, view) {
+        return h.response(view.generateOutput(statusCode)).code(statusCode);
     }
 }

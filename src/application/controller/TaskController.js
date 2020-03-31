@@ -3,27 +3,56 @@
 import AbstractController from "./AbstractController";
 import JSONView from "../views/JSONView";
 import Task from "../model/Task";
+import TaskForm from "../form/TaskForm";
+
+import ApiError from "../model/ApiError";
 
 export default class TaskController extends AbstractController {
 
-    getTask(request, h) {
-        return (new JSONView(new Task())).generateOutput();
+    constructor(taskDAO) {
+        super();
+        this.taskDAO = taskDAO;
     }
 
-    getTasks(request, h) {
-        const tasks = [new Task(), new Task()];
-        return (new JSONView(tasks)).generateOutput();
+    async getTask(request, h) {
+        const id = request.params.id;
+        const task = this.taskDAO.readTask(id);
+        if(task != null) {
+            return this.sendResponse(h, 200, new JSONView(task))
+        } else {
+            return this.sendResponse(h, 404, new JSONView(new ApiError("Task not found", `Task with id ${id} not found`)))
+        }
     }
 
-    postTask(request, h) {
-
+    async getTasks(request, h) {
+        const tasks = this.taskDAO.readTasks();
+        return this.sendResponse(h, 200, new JSONView(tasks))
     }
 
-    putTask(request, h) {
-
+    async postTask(request, h) {
+        const taskForm = new TaskForm(request.payload);
+        if(taskForm.isValid()){
+            const newTask = Task.fromJson(request.payload);
+            const DAOResult = await this.taskDAO.createTask(newTask);
+            return this.sendResponse(h, 200, new JSONView(DAOResult));
+        }
+        return this.sendResponse(h, 400, new JSONView(taskForm.error));
     }
 
-    deleteTask(request, h) {
+    async putTask(request, h) {
+        const taskForm = new TaskForm(request.payload);
+        if(taskForm.isValid()){
+            const newTask = Task.fromJson(request.payload);
+            return this.sendResponse(h, 200, new JSONView(this.taskDAO.updateTask(newTask)));
+        }
+        return this.sendResponse(h, 400, new JSONView(taskForm.error));
+    }
 
+    async deleteTask(request, h) {
+        const id = request.params.id;
+        if(this.taskDAO.deleteTask(id)){
+            return this.sendResponse(h, 200, new JSONView());
+        }
+        return this.sendResponse(h, 404, new JSONView(new ApiError("Task not found", `Task with id ${id} not found`)));
     }
 }

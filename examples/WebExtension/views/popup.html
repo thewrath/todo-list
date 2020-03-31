@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        /* Theme CSS */
+        @font-face {
+            font-family: "YanoneKaffeesatz";
+            src: url("./Yanone_Kaffeesatz/YanoneKaffeesatz-VariableFont_wght.ttf");
+        }
+
+        body {
+            min-width: 500px;
+        }
+
+        h1, h2 {
+            font-family: "YanoneKaffeesatz";
+        }
+
+
+        #task-list {
+            max-height: 150px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="todo" class="w3-container w3-center w3-padding">
+        <div class="w3-card">
+            <div class="w3-container w3-indigo w3-left-align">
+                <h4>Mes tâches :</h4>
+            </div>
+            <ul id="task-list" class="w3-ul w3-left-align">
+               
+            </ul>
+        </div>
+        <br>
+        <div class="w3-card">
+            <div class="w3-container w3-indigo w3-left-align">
+                <h4>Ajouter une tâche :</h4>
+            </div>
+            <form class="w3-container w3-left-align" action="http://localhost:3000/task" method="post">
+                <label>Titre</label>
+                <input class="w3-input" type="text" name="title">
+                <div class="w3-cell-row">
+                    <div class="w3-cell">
+                        <label>Date début</label>
+                        <input class="w3-input" type="date" name="dateBegin">
+                    </div>
+                    <div class="w3-cell">
+                        <label>Date fin</label>
+                        <input class="w3-input" type="date" name="dateEnd">
+                    </div>
+                </div>
+                <div class="w3-cell-row">
+                    <div class="w3-cell">
+                        <label>Statut</label>
+                        <select class="w3-select" name="statut">
+                            <option value="" disabled selected>Choirsir un statut</option>
+                            <option value="1">Non precisé</option>
+                            <option value="2">Une tâche est requise</option>
+                            <option value="3">En cours</option>
+                            <option value="4">Achevée</option>
+                            <option value="5">Annulé</option>
+                          </select> 
+                    </div>
+                    <div class="w3-cell">
+                        <label>Tags :</label>
+                        <input class="w3-input" type="text" name="tags">
+                    </div>
+                </div>
+                <br>
+                <input class="w3-input w3-border-0" type="submit" value="Ajouter">
+                <br>
+            </form>
+            <div class="w3-panel w3-pale-red w3-topbar w3-border-red w3-hidden">
+                <p>Le champs .. ne doit pas être vide</p>
+            </div>                 
+        </div>
+    </div>
+    <script src="../popup.js"></script>
+</body>
+</html>

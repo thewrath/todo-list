@@ -2,6 +2,8 @@ import Dotenv from 'dotenv'
 import HapiServer from './http/HapiServer'
 import Routes from './config/Routes'
 
+import Controllers from './config/Controllers'
+
 
 export default class Kernel {
 
@@ -21,9 +23,8 @@ export default class Kernel {
       port: process.env.PORT,
       host: process.env.HOST
     });
-    console.log(Routes);
+    
     HttpServer.registerRoutes(Routes);
-
     HttpServer.start();
   }
 }

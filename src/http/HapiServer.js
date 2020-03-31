@@ -10,6 +10,12 @@ export default class HapiServer extends HttpServer {
     }
 
     async start() {
+        await this.hapiServer.register({
+        plugin: require('hapi-cors'),
+            options: {
+                origins: ['*']
+            }
+        });
         await this.hapiServer.start();
         console.log('Server running on %s', this.hapiServer.info.uri);
     }

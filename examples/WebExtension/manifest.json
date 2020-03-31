@@ -1,0 +1,27 @@
+{
+    "name": "WebExtension Boilerplate",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "description": "Boilerplate for a WebExtension.",
+    "homepage_url": "https://github.com/imagitama/webextension-boilerplate",
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "permissions": [
+        "*://localhost/*",
+        "webRequest",
+        "activeTab"
+    ],
+
+    "background": {
+        "scripts": ["background.js"]
+    },
+
+    "browser_action": {
+        "default_icon": "icons/icon48.png",
+        "default_title": "Todo",
+        "default_popup": "views/popup.html"
+    }
+}
