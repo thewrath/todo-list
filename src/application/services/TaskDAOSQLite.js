@@ -17,29 +17,86 @@ export default class TaskDAO {
     }
 
     async createTask(task) {
-        await this.db.serialize(() => {
-            let stmt = this.db.prepare("INSERT INTO Task(title, dateBegin, dateEnd, statut, tags) VALUES (?, ?, ?, ?, ?)");
-            stmt.run(task.title, task.dateBegin, task.dateEnd, task.statut, "");
-            stmt.finalize();
+        return new Promise((resolve, reject) => {
+            this.db.serialize(() => {
+                let stmt = this.db.prepare("INSERT INTO Task(title, dateBegin, dateEnd, statut, tags) VALUES (?, ?, ?, ?, ?)", (err) => {
+                    if(err) {
+                        reject(err);
+                    }else {
+                        stmt.run(task.title, task.dateBegin, task.dateEnd, task.statut, "");
+                        stmt.finalize();
+                        task.id = this.db.lastInsertRowId;
+                        resolve(task);
+                    }
+                });
+            });
         });
-        task.id = this.db.lastInsertRowId;
-        return task;
     }
 
     async readTasks() {
-        return null;
+        return new Promise((resolve, reject) => {
+            this.db.all("SELECT * FROM Task", [], (err, rows) => {
+                if (err) {
+                    reject(err);
+                }
+                resolve(rows);
+            });
+        }); 
     }
 
     async readTask(id) {
-        return null;      
+        return new Promise((resolve, reject) => {
+            this.db.serialize(() => {
+                let stmt = this.db.prepare("SELECT * FROM Task WHERE id=?", (err) => {
+                    if(err) {
+                        reject(err);
+                    } else {
+                        stmt.each(id, (err, row) => {
+                            if(err) {
+                                reject(err);
+                            }
+                            resolve(row);
+                        }, (err, count) => {
+                            if(err) {
+                                reject(err)
+                            }
+                            stmt.finalize();
+                            resolve(null);
+                        });
+                    }
+                });
+            });
+        });   
     }
 
     async updateTask(task) {
-        return null;
+        return new Promise((resolve, reject) => {
+            this.db.serialize(() => {
+                let stmt = this.db.prepare("UPDATE SET title = ?, dateBegin = ?, dateEnd = ? , statut = ?, tags = ?) WHERE id = ?", (err) => {
+                    if(err) {
+                        reject(err);
+                    }else {
+                        stmt.run(task.title, task.dateBegin, task.dateEnd, task.statut, "", task.id);
+                        stmt.finalize();
+                        resolve(task);
+                    }
+                });
+            });
+        });
     }
 
     async deleteTask(id) {
-        return null;
+        return new Promise((resolve, reject) => {
+            let stmt = this.db.prepare("DELETE FROM Task WHERE id=?", (err) => {
+                if(err) {
+                    reject(err);
+                }else {
+                    stmt.run(id);
+                    stmt.finalize();
+                    resolve();
+                }
+            });
+        });
     }
 
     close() {

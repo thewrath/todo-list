@@ -1,3 +1,7 @@
+const todoApi = {
+    url: 'http://localhost',
+    port: 3000
+};
 // Task states
 var taskStates = []
 
@@ -14,7 +18,11 @@ document.addEventListener('submit', e => {
     }).then((response) => {
         response.json().then((data) => {
             if(data.statusCode == 200) {
+                document.getElementById('new-task-error').style.display = "none";
                 addTask(data.payload);
+            } else {
+                document.getElementById('new-task-error').innerText = data.message;
+                document.getElementById('new-task-error').style.display = "block";
             }
         })
     });
@@ -24,14 +32,6 @@ document.addEventListener('submit', e => {
 
 });
 
-const todoApi = {
-    url: 'http://localhost',
-    port: 3000
-};
-
-let sendTask = (task) => {
-
-};
 
 let deleteTask = (id) => {
     return fetch(`${todoApi.url}:${todoApi.port}/task/${id}`, {method: "DELETE"}).then((response) => {
