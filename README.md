@@ -10,6 +10,7 @@ This project is a simple task list API written with Node.js, it applies good pra
   * API Error handling
   * Try of async await use (it can be better)
   * SQLite3 database
+  * ES6 with eslint standard
 
 ## 🏗️ Installation
 ```js
@@ -23,6 +24,8 @@ The server launches with this command (he's listening in on port 3000):
 ```js
 $ npm run server:start
 ```
+The WebExtension is located in the examples folder and can be installed using Firefox `about:debugging` page.
+
 ## 🃏 Test
 
 Test are write in `test` folder with the jest framework from Facebook

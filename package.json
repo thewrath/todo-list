@@ -1,14 +1,14 @@
 {
   "name": "todo",
   "version": "1.0.0",
-  "description": "project description",
+  "description": "Simple Node.js TODO list API and WebExtension",
   "main": "src/main.js",
   "scripts": {
-    "test": "mocha  test/main.js",
+    "server:test": "jest  test/main.js",
     "server:start": "node -r esm  main.js"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@hapi/hapi": "^18.4.1",
     "dotenv": "^8.0.0",

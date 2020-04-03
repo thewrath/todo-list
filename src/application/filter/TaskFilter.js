@@ -1,22 +1,22 @@
 'use strict'
 
-import AbstractFilter from './AbstractFilter';
+import AbstractFilter from './AbstractFilter'
+import Task from '../model/Task'
 
 export default class TaskFilter extends AbstractFilter {
-    constructor(taskModl) {
-        if(taskModel instanceof TaskModel){
-            this.taskModel = taskModel;
-        }else {
-            throw error("TaskFilter works only with TaskModel object");
-        }
+  constructor (taskModel) {
+    super(taskModel)
+    if (!(this.taskModel instanceof Task)) {
+      throw new Error('TaskFilter works only with Task object')
     }
+  }
 
-    _filter(entrie){
-        if(taskModel.title != undefined && taskModel.title != null && taskModel.title.trim() != ""){
-            if(entrie.title != this.taskModel.title) {
-                return false;
-            }
-        }
-        return true;
+  _filter (entrie) {
+    if (this.taskModel.title !== undefined && this.taskModel.title !== null && this.taskModel.title.trim() !== '') {
+      if (entrie.title !== this.taskModel.title) {
+        return false
+      }
     }
+    return true
+  }
 }

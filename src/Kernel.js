@@ -2,12 +2,8 @@ import Dotenv from 'dotenv'
 import HapiServer from './http/HapiServer'
 import Routes from './config/Routes'
 
-import Controllers from './config/Controllers'
-
-
 export default class Kernel {
-
-  boot() {
+  boot () {
     const result = Dotenv.config()
 
     if (result.error) {
@@ -22,9 +18,9 @@ export default class Kernel {
     const HttpServer = new HapiServer({
       port: process.env.PORT,
       host: process.env.HOST
-    });
-    
-    HttpServer.registerRoutes(Routes);
-    HttpServer.start();
+    })
+
+    HttpServer.registerRoutes(Routes)
+    HttpServer.start()
   }
 }
