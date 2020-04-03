@@ -11,6 +11,7 @@ This project is a simple task list API written with Node.js, it applies good pra
   * Try of async await use (it can be better)
   * SQLite3 database
   * ES6 with eslint standard
+  * .env configuration file
 
 ## 🏗️ Installation
 ```js
@@ -28,16 +29,14 @@ The WebExtension is located in the examples folder and can be installed using Fi
 
 ## 🃏 Test
 
-Test are write in `test` folder with the jest framework from Facebook
-
-```
-$ npm run server:test
-```
+The tests are not automatic, you have to load them in Postman.
 
 ## 🏗️ Dependencies
 
 ## ⚙️ TODO
-  * 
+  * Update in GUI
+  * Tags display in GUI
+  * Date display in GUI
   
 ## 🔧 TO FIX 
   * 

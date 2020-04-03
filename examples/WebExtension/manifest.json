@@ -1,9 +1,9 @@
 {
-    "name": "WebExtension Boilerplate",
+    "name": "TODO List",
     "version": "0.0.1",
     "manifest_version": 2,
-    "description": "Boilerplate for a WebExtension.",
-    "homepage_url": "https://github.com/imagitama/webextension-boilerplate",
+    "description": "Simple TODO List",
+    "homepage_url": "https://github.com/thewrath/todo-list/tree/master/examples/WebExtension",
     "icons": {
         "16": "icons/icon16.png",
         "48": "icons/icon48.png",
@@ -14,10 +14,6 @@
         "webRequest",
         "activeTab"
     ],
-
-    "background": {
-        "scripts": ["background.js"]
-    },
 
     "browser_action": {
         "default_icon": "icons/icon48.png",
