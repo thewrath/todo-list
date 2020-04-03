@@ -30,12 +30,28 @@
             display: none;
         }
 
+        .tags-box {
+            width: 200px;
+            height: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+        .tags-box span {
+            position: absolute;
+            white-space: nowrap;
+            transform: translateX(0);
+            transition: 2s;
+        }
+        .tags-box:hover span {
+            transform: translateX(calc(200px - 100%));
+        }
+
     </style>
 </head>
 <body>
     <div id="todo" class="w3-container w3-center w3-padding">
         <div class="w3-card">
-            <div class="w3-container w3-indigo w3-left-align">
+            <div class="w3-container w3-blue-gray w3-left-align">
                 <h4>Mes tâches :</h4>
             </div>
             <ul id="task-list" class="w3-ul w3-left-align">
@@ -44,7 +60,7 @@
         </div>
         <br>
         <div class="w3-card">
-            <div class="w3-container w3-indigo w3-left-align">
+            <div class="w3-container w3-blue-gray w3-left-align">
                 <h4>Ajouter une tâche :</h4>
             </div>
             <form class="w3-container w3-left-align" action="http://localhost:3000/task" method="post">
@@ -53,11 +69,11 @@
                 <div class="w3-cell-row">
                     <div class="w3-cell">
                         <label>Date début</label>
-                        <input class="w3-input" type="date" name="dateBegin">
+                        <input class="w3-input" type="date" name="dateBegin" value="2020-04-01">
                     </div>
                     <div class="w3-cell">
                         <label>Date fin</label>
-                        <input class="w3-input" type="date" name="dateEnd">
+                        <input class="w3-input" type="date" name="dateEnd" value="2020-06-01">
                     </div>
                 </div>
                 <div class="w3-cell-row">
@@ -65,11 +81,11 @@
                         <label>Statut</label>
                         <select class="w3-select" name="statut">
                             <option value="" disabled selected>Choirsir un statut</option>
-                            <option value="1">Non precisé</option>
-                            <option value="2">Une tâche est requise</option>
-                            <option value="3">En cours</option>
-                            <option value="4">Achevée</option>
-                            <option value="5">Annulé</option>
+                            <option value="0">Non precisé</option>
+                            <option value="1">Une tâche est requise</option>
+                            <option value="2">En cours</option>
+                            <option value="3">Achevée</option>
+                            <option value="4">Annulé</option>
                           </select> 
                     </div>
                     <div class="w3-cell">
@@ -82,7 +98,7 @@
                 <br>
             </form>
             <div id="new-task-error" class="w3-panel w3-pale-red w3-topbar w3-border-red w3-hidden">
-                <p>Le champs .. ne doit pas être vide</p>
+                <p></p>
             </div>                 
         </div>
     </div>

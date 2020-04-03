@@ -4,11 +4,11 @@ export default class Task {
 
     constructor(id) {
         this.id = id;  
-        this.title = "Je suis une tâche";
+        this.title = "";
         this.dateBegin = "";
         this.dateEnd = "";
         this.statut = 0;
-        this.tags = [""];
+        this.tags = "";
     }
 
     static fromJson(json) {

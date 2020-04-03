@@ -4,8 +4,8 @@ import AbstractController from "./AbstractController";
 import JSONView from "../views/JSONView";
 import Task from "../model/Task";
 import TaskForm from "../form/TaskForm";
-
 import ApiError from "../model/ApiError";
+import TaskFilter from "../filter/TaskFilter";
 
 export default class TaskController extends AbstractController {
 
@@ -24,17 +24,24 @@ export default class TaskController extends AbstractController {
                 return this.sendResponse(h, 404, new JSONView(new ApiError("Task not found", `Task with id ${id} not found`)))
             }
         } catch (err) {
-            return this.sendResponse(h, 500, new JSONView(new ApiError("SQL Error", "SQL Error on SELECT")));
+            return this.sendResponse(h, 500, new JSONView(new ApiError("Request error", "this request cannot be successful check your settings")));
         }
         
     }
 
     async getTasks(request, h) {
         try {
-            const tasks = await this.taskDAO.readTasks();
+            let tasks = await this.taskDAO.readTasks();
+            // Apply filter 
+            try {
+                const taskForm = new TaskForm(request.payload);
+                if(taskForm.isValid()){
+                    tasks = (new TaskFilter(TaskModel.fromJson(request.payload))).reduce(tasks);    
+                }
+            } catch (err) { } // Error here is only when no params are in inputs
             return this.sendResponse(h, 200, new JSONView(tasks))
         } catch (err) {
-            return this.sendResponse(h, 500, new JSONView(new ApiError("SQL Error", "SQL Error on SELECT")));
+            return this.sendResponse(h, 500, new JSONView(new ApiError("Request error", "this request cannot be successful check your settings")));
         }
     }
 
@@ -46,7 +53,7 @@ export default class TaskController extends AbstractController {
                 const DAOResult = await this.taskDAO.createTask(newTask);
                 return this.sendResponse(h, 200, new JSONView(DAOResult));
             } catch {
-                return this.sendResponse(h, 500, new JSONView(new ApiError("SQL Error", "SQL Error on INSERT")));
+                return this.sendResponse(h, 500, new JSONView(new ApiError("Request error", "this request cannot be successful check your settings")));
             }
         }
         return this.sendResponse(h, 400, new JSONView(taskForm.error));
@@ -62,7 +69,7 @@ export default class TaskController extends AbstractController {
                 await this.taskDAO.updateTask(newTask)
                 return this.sendResponse(h, 200, new JSONView(newTask));
             } catch (err) {
-                return this.sendResponse(h, 500, new JSONView(new ApiError("SQL Error", "SQL Error on UPDATE")))
+                return this.sendResponse(h, 500, new JSONView(new ApiError("Request error", "this request cannot be successful check your settings")))
             }
         }
         return this.sendResponse(h, 400, new JSONView(taskForm.error));

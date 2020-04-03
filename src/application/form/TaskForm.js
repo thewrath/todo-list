@@ -28,6 +28,10 @@ export default class TaskForm extends AbstractForm {
                 noError = false;
                 this.error = new ApiError("Invalid field", "title field cannot be blank");
             }
+            if(isNaN(this.params.statut)) {
+                noError = false;
+                this.error = new ApiError("Invalid field", "statut field need to be a number");
+            }
         }
         return noError;
     }

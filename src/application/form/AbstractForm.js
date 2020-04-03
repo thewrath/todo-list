@@ -4,6 +4,9 @@ import ApiError from "../model/ApiError";
 
 export default class AbstractForm {
     constructor(params) {
+        if(params == null){
+            throw error("Input params cannot be null");
+        }
         this.params = params;
         this.expectedParams = [];
         this.error = null;

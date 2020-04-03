@@ -23,7 +23,7 @@ export default class TaskDAO {
                     if(err) {
                         reject(err);
                     }else {
-                        stmt.run(task.title, task.dateBegin, task.dateEnd, task.statut, "");
+                        stmt.run(task.title, task.dateBegin, task.dateEnd, task.statut, task.tags);
                         stmt.finalize();
                         task.id = this.db.lastInsertRowId;
                         resolve(task);
@@ -76,7 +76,7 @@ export default class TaskDAO {
                     if(err) {
                         reject(err);
                     }else {
-                        stmt.run(task.title, task.dateBegin, task.dateEnd, task.statut, "", task.id);
+                        stmt.run(task.title, task.dateBegin, task.dateEnd, task.statut, task.tags, task.id);
                         stmt.finalize();
                         resolve(task);
                     }

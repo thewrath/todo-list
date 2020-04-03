@@ -7,6 +7,6 @@ export default class AbstractController {
     }
 
     sendResponse(h, statusCode, view) {
-        return h.response(view.generateOutput(statusCode)).code(statusCode);
+        return h.response(view.generateOutput()).code(statusCode);
     }
 }

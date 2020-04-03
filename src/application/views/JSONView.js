@@ -7,23 +7,22 @@ export default class JSONView extends AbstractView {
         super(model);
     }
 
-    generateOutput(statusCode) {
+    generateOutput() {
         if(this.model != null) {
             if(this.model instanceof ApiError){
                 return {
-                    "statusCode": statusCode,
-                    "error": this.model.name,
+                    "status": "error",
                     "message": this.model.message
                 }
             } else {
                 return {
-                    "statusCode": statusCode,
-                    "payload": this.model
+                    "status": "success",
+                    "data": this.model
                 }
             }
         } else {
             return {
-                "statusCode": statusCode
+                "status": "success"
             }
         }
         
