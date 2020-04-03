@@ -1,8 +1,8 @@
-![alt text](https://github.com/thewrath/todo-list/blob/master/examples/preview/preview_mini.png)
 # Overview
 
 This project is a simple task list API written with Node.js, it applies good practices of object-oriented design including SOLID principles. This project is not aim to be in a production environment and does not rely on libraries designed for this purpose (error handling and HTTP request managment are done without libraries).
 
+![alt text](https://github.com/thewrath/todo-list/blob/master/examples/preview/preview_mini.png)
 
 ## ✔️ Features
   * CRUD for task management
