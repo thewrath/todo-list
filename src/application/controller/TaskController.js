@@ -31,10 +31,7 @@ export default class TaskController extends AbstractController {
     try {
       let tasks = await this.taskDAO.readTasks()
       try {
-        const taskForm = new TaskForm(request.query)
-        if (taskForm.isValid()) {
           tasks = (new TaskFilter(Task.fromJson(request.query))).reduce(tasks)
-        }
       } catch (err) {
       } // Error here is only when no params are in inputs
       return this.sendResponse(h, 200, new JSONView(tasks))
