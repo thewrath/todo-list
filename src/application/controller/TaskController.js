@@ -34,7 +34,7 @@ export default class TaskController extends AbstractController {
         tasks = (new TaskFilter(Task.fromJson(request.query))).reduce(tasks)
       } catch (err) {
         // Error here is only when no params are in inputs, so there is nothing
-      } 
+      }
       return this.sendResponse(h, 200, new JSONView(tasks))
     } catch (err) {
       return this.sendResponse(h, 500, new JSONView(new ApiError('Request error', 'this request cannot be successful check your settings')))
@@ -60,7 +60,7 @@ export default class TaskController extends AbstractController {
     try {
       const lastTask = await this.taskDAO.readTask(id)
       const newTask = Task.combine(request.payload, lastTask)
-      // Persist updated task 
+      // Persist updated task
       await this.taskDAO.updateTask(newTask)
       return this.sendResponse(h, 200, new JSONView(newTask))
     } catch (err) {

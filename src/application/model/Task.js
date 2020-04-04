@@ -22,7 +22,7 @@ export default class Task {
     // Create new task with property of the first part in priority and supplement with second part if needed
     const task = Task.fromJson(first)
     for (const property in second) {
-      if (task[property] == undefined) {
+      if (task[property] === undefined) {
         task[property] = second[property]
       }
     }

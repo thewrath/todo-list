@@ -5,7 +5,11 @@ export default class HttpServer {
     this.params = params
   }
 
-  async start () {}
+  async start () {
 
-  registerRoutes () {}
+  }
+
+  registerRoutes () {
+
+  }
 }
