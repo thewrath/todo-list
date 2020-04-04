@@ -12,7 +12,7 @@ export default class AbstractFilter {
   reduce (entries) {
     if (Array.isArray(entries)) {
       return entries.filter((entry) => {
-        this._filter(entry)
+        return this._filter(entry)
       })
     } else {
       return this._filter(entries)
