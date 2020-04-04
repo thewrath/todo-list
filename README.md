@@ -1,4 +1,4 @@
-# TODO List Web extension and API
+# TODO List Web extension and API ✔
 
 ## Overview
 
@@ -34,7 +34,7 @@ The WebExtension is located in the examples folder and can be installed using Fi
 
 The tests are not automatic, you have to load them in Postman.
 
-## 🏗️ Dependencies
+## 🧱 Dependencies
   * hapi
   * hapi-cors
   * dotenv
