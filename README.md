@@ -35,7 +35,12 @@ The WebExtension is located in the examples folder and can be installed using Fi
 The tests are not automatic, you have to load them in Postman.
 
 ## 🏗️ Dependencies
-
+  * hapi
+  * hapi-cors
+  * dotenv
+  * esm
+  * sqlite3
+ 
 ## ⚙️ TODO
   * Update in GUI
   * Tags display in GUI
