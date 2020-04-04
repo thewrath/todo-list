@@ -30,13 +30,13 @@ export default class TaskController extends AbstractController {
   async getTasks (request, h) {
     try {
       let tasks = await this.taskDAO.readTasks()
-      // Apply filter
       try {
-        const taskForm = new TaskForm(request.payload)
+        const taskForm = new TaskForm(request.query)
         if (taskForm.isValid()) {
-          tasks = (new TaskFilter(Task.fromJson(request.payload))).reduce(tasks)
+          tasks = (new TaskFilter(Task.fromJson(request.query))).reduce(tasks)
         }
-      } catch (err) { } // Error here is only when no params are in inputs
+      } catch (err) {
+      } // Error here is only when no params are in inputs
       return this.sendResponse(h, 200, new JSONView(tasks))
     } catch (err) {
       return this.sendResponse(h, 500, new JSONView(new ApiError('Request error', 'this request cannot be successful check your settings')))

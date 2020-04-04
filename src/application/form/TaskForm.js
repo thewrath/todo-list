@@ -17,7 +17,7 @@ export default class TaskForm extends AbstractForm {
   isValid () {
     let noError = true
     this.expectedParams.forEach(param => {
-      if (!this.params.hasOwnProperty(param)) {
+      if (!Object.prototype.hasOwnProperty.call(this.params, param)) {
         noError = false
         this.error = new ApiError('Field is missing', `Field ${param} is missing`)
       }

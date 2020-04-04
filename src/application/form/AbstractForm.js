@@ -15,7 +15,9 @@ export default class AbstractForm {
   isValid () {
     let noError = true
     this.expectedParams.forEach(param => {
-      if (!this.params.hasOwnProperty(param)) {
+      // hasOwnProperty cannot be used here because request.payload/query from Hapi doesn't inherit from JS Object base class (so hasOwnProperty doesn't exists)
+      // https://stackoverflow.com/questions/53978067/hasownproperty-is-not-a-function-in-node-js
+      if (!Object.prototype.hasOwnProperty.call(this.params, param)) {
         noError = false
         this.error = new ApiError('Field is missing', `Field ${param} is missing`)
       }

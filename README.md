@@ -40,8 +40,10 @@ The tests are not automatic, you have to load them in Postman.
   * Update in GUI
   * Tags display in GUI
   * Date display in GUI
+  * Add OAuth compatibilty with JSON Web Token
   
 ## 🔧 TO FIX 
-  * 
+  * Better try/catch and error management
+  * Better filter implementation
 
 

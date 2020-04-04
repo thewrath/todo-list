@@ -6,14 +6,14 @@ import Task from '../model/Task'
 export default class TaskFilter extends AbstractFilter {
   constructor (taskModel) {
     super(taskModel)
-    if (!(this.taskModel instanceof Task)) {
+    if (!(taskModel instanceof Task)) {
       throw new Error('TaskFilter works only with Task object')
     }
   }
 
   _filter (entrie) {
-    if (this.taskModel.title !== undefined && this.taskModel.title !== null && this.taskModel.title.trim() !== '') {
-      if (entrie.title !== this.taskModel.title) {
+    if (this.model.title !== undefined && this.model.title !== null && this.model.title.trim() !== '') {
+      if (entrie.title !== this.model.title) {
         return false
       }
     }
