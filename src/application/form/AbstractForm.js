@@ -4,6 +4,9 @@ import ApiError from '../model/ApiError'
 
 export default class AbstractForm {
   constructor (params) {
+    if (this.constructor === AbstractForm) {
+      throw new TypeError('AbstractForm class "AbstractConfig" cannot be instantiated directly');
+    }
     if (params == null) {
       throw new Error('Input params cannot be null')
     }
