@@ -33,7 +33,8 @@ export default class TaskController extends AbstractController {
       try {
         tasks = (new TaskFilter(Task.fromJson(request.query))).reduce(tasks)
       } catch (err) {
-      } // Error here is only when no params are in inputs
+        // Error here is only when no params are in inputs, so there is nothing
+      } 
       return this.sendResponse(h, 200, new JSONView(tasks))
     } catch (err) {
       return this.sendResponse(h, 500, new JSONView(new ApiError('Request error', 'this request cannot be successful check your settings')))
@@ -56,18 +57,15 @@ export default class TaskController extends AbstractController {
 
   async putTask (request, h) {
     const id = request.params.id
-    const taskForm = new TaskForm(request.payload)
-    if (taskForm.isValid()) {
-      const newTask = Task.fromJson(request.payload)
-      newTask.id = id
-      try {
-        await this.taskDAO.updateTask(newTask)
-        return this.sendResponse(h, 200, new JSONView(newTask))
-      } catch (err) {
-        return this.sendResponse(h, 500, new JSONView(new ApiError('Request error', 'this request cannot be successful check your settings')))
-      }
+    try {
+      const lastTask = await this.taskDAO.readTask(id)
+      const newTask = Task.combine(request.payload, lastTask)
+      // Persist updated task 
+      await this.taskDAO.updateTask(newTask)
+      return this.sendResponse(h, 200, new JSONView(newTask))
+    } catch (err) {
+      return this.sendResponse(h, 500, new JSONView(new ApiError('Request error', 'this request cannot be successful check your settings')))
     }
-    return this.sendResponse(h, 400, new JSONView(taskForm.error))
   }
 
   async deleteTask (request, h) {

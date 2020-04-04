@@ -72,7 +72,7 @@ export default class TaskDAO {
   async updateTask (task) {
     return new Promise((resolve, reject) => {
       this.db.serialize(() => {
-        const stmt = this.db.prepare('UPDATE SET title = ?, dateBegin = ?, dateEnd = ? , statut = ?, tags = ?) WHERE id = ?', (err) => {
+        const stmt = this.db.prepare('UPDATE Task SET title = ?, dateBegin = ?, dateEnd = ? , statut = ?, tags = ? WHERE id = ?', (err) => {
           if (err) {
             reject(err)
           } else {
