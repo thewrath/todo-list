@@ -13,6 +13,7 @@ export default class SQLiteConnector {
 
     _initialize () {
         this.db.run('CREATE TABLE IF NOT EXISTS TaskState (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)')
-        this.db.run('CREATE TABLE IF NOT EXISTS Task (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, dateBegin TEXT, dateEnd TEXT, statut INTEGER, tags TEXT)')
+        this.db.run('CREATE TABLE IF NOT EXISTS Task (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, dateBegin TEXT, dateEnd TEXT, statut INTEGER, tags TEXT, FOREIGN KEY(statut) REFERENCES TaskState(id))')
+        this.db.get("PRAGMA foreign_keys = ON")
     }
 }
