@@ -12,10 +12,14 @@ export default class TaskDAO {
           if (err) {
             reject(err)
           } else {
-            stmt.run(task.title, task.dateBegin, task.dateEnd, task.statut, task.tags)
-            stmt.finalize()
-            task.id = this.db.lastInsertRowId
-            resolve(task)
+            stmt.run(task.title, task.dateBegin, task.dateEnd, task.statut, task.tags, (err) => {
+              if (err) {
+                reject(err)
+              }
+              stmt.finalize()
+              task.id = this.db.lastInsertRowId
+              resolve(task)
+            })
           }
         })
       })

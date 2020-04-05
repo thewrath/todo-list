@@ -50,7 +50,7 @@ export default class TaskController extends AbstractController {
         const DAOResult = await this.taskDAO.createTask(newTask)
         return this.sendResponse(h, 200, new JSONView(DAOResult))
       } catch (err) {
-        return this.sendResponse(h, 500, new JSONView(new ApiError('Request error', 'this request cannot be successful check your settings')))
+        return this.sendResponse(h, 400, new JSONView(new ApiError('Request error', 'this request cannot be successful check your settings')))
       }
     }
     return this.sendResponse(h, 400, new JSONView(taskForm.error))
