@@ -2,7 +2,7 @@
 
 export default class TaskDAO {
   constructor (connector) {
-    this.db = connector.db;
+    this.db = connector.db
   }
 
   async createTask (task) {

@@ -1,10 +1,8 @@
 'use strict'
 
-import TaskState from '../../model/TaskState'
-
 export default class TaskStateDAO {
   constructor (connector) {
-    this.db = connector.db;
+    this.db = connector.db
   }
 
   async readTasks () {
