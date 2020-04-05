@@ -23,7 +23,7 @@ export default class TaskController extends AbstractController {
         return this.sendResponse(h, 404, new JSONView(new ApiError('Task not found', `Task with id ${id} not found`)))
       }
     } catch (err) {
-      return this.sendResponse(h, 500, new JSONView(new ApiError('Request error', 'this request cannot be successful check your settings')))
+      return this.sendResponse(h, 400, new JSONView(new ApiError('Request error', 'this request cannot be successful check your settings')))
     }
   }
 
@@ -37,7 +37,7 @@ export default class TaskController extends AbstractController {
       }
       return this.sendResponse(h, 200, new JSONView(tasks))
     } catch (err) {
-      return this.sendResponse(h, 500, new JSONView(new ApiError('Request error', 'this request cannot be successful check your settings')))
+      return this.sendResponse(h, 400, new JSONView(new ApiError('Request error', 'this request cannot be successful check your settings')))
     }
   }
 
@@ -64,7 +64,7 @@ export default class TaskController extends AbstractController {
       await this.taskDAO.updateTask(newTask)
       return this.sendResponse(h, 200, new JSONView(newTask))
     } catch (err) {
-      return this.sendResponse(h, 500, new JSONView(new ApiError('Request error', 'this request cannot be successful check your settings')))
+      return this.sendResponse(h, 400, new JSONView(new ApiError('Request error', 'this request cannot be successful check your settings')))
     }
   }
 
