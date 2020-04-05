@@ -1,6 +1,6 @@
 'use strict'
 
-import Task from '../model/Task'
+import Task from '../../../model/Task'
 
 export default class TaskDAO {
   constructor () {

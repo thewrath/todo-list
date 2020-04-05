@@ -1,9 +1,9 @@
 'use strict'
 
 export default class TaskState {
-  constructor (id, value) {
+  constructor (id, name) {
     this.id = id
-    this.value = value
+    this.name = name
   }
 
   static fromJson (json) {

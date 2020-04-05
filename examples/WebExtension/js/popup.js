@@ -68,7 +68,7 @@ const refreshTaskStates = () => {
   findTaskStates().then((response) => {
     if (response.status === 'success') {
       response.data.forEach(taskState => {
-        taskStates[taskState.id] = taskState.value
+        taskStates[taskState.id] = taskState.name
       })
     }
   })

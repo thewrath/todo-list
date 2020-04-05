@@ -1,6 +1,6 @@
 'use strict'
 
-import TaskState from '../model/TaskState'
+import TaskState from '../../../model/TaskState'
 
 export default class TaskStateDAO {
   constructor () {
@@ -14,7 +14,7 @@ export default class TaskStateDAO {
     ]
   }
 
-  readTasks () {
+  async readTasks () {
     return this.tasks
   }
 }

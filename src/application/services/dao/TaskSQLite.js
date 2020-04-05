@@ -1,19 +1,8 @@
 'use strict'
-import sqlite3 from 'sqlite3'
 
 export default class TaskDAO {
-  constructor (filename) {
-    this.db = new sqlite3.Database(filename, (err) => {
-      if (err) {
-        return console.error(err.message)
-      }
-      console.log(`Connected to the ${filename} SQlite database.`)
-      this._initialize()
-    })
-  }
-
-  _initialize () {
-    this.db.run('CREATE TABLE IF NOT EXISTS Task (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, dateBegin TEXT, dateEnd TEXT, statut INTEGER, tags TEXT)')
+  constructor (connector) {
+    this.db = connector.db;
   }
 
   async createTask (task) {

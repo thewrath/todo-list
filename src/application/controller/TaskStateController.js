@@ -9,9 +9,9 @@ export default class TaskStateController extends AbstractController {
     this.taskStateDAO = taskStateDAO
   }
 
-  getTaskStates (request, h) {
+  async getTaskStates (request, h) {
     try {
-      const taskStates = this.taskStateDAO.readTasks()
+      const taskStates = await this.taskStateDAO.readTasks()
       return this.sendResponse(h, 200, new JSONView(taskStates))
     } catch(err){
       return this.sendResponse(h, 400, new JSONView(new ApiError('Request error', 'this request cannot be successful check your settings')))

@@ -37,6 +37,7 @@ export default class TaskController extends AbstractController {
       }
       return this.sendResponse(h, 200, new JSONView(tasks))
     } catch (err) {
+      console.log(err);
       return this.sendResponse(h, 400, new JSONView(new ApiError('Request error', 'this request cannot be successful check your settings')))
     }
   }
