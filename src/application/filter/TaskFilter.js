@@ -11,6 +11,10 @@ export default class TaskFilter extends AbstractFilter {
     }
   }
 
+  /**
+   * @method _filter
+   * @description method that filter only task that match params given in the request (taskModel) 
+   */
   _filter (entrie) {
     // Check title (most restrictive)
     if (this.model.title !== undefined && entrie.title !== this.model.title) {

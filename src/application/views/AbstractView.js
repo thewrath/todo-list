@@ -8,6 +8,10 @@ export default class AbstractView {
     this.model = model
   }
 
+  /**
+   * @method generate
+   * @description generate output for HTTP Response 
+   */
   generateOutput () {
     throw new Error('Cannot use abstract view to generate HTTP Response')
   }

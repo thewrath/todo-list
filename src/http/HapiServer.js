@@ -20,6 +20,10 @@ export default class HapiServer extends HttpServer {
     console.log('Server running on %s', this.hapiServer.info.uri)
   }
 
+  /**
+   * @method registerRoutes
+   * @description register all describe in the configuration array (routes param) 
+   */
   registerRoutes (routes) {
     routes.forEach(route => {
       this.hapiServer.route(route)

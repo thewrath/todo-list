@@ -14,6 +14,10 @@ export default class TaskForm extends AbstractForm {
     }
   }
 
+  /**
+   * @method isValid
+   * @description check if params for task creation are valid 
+   */
   isValid () {
     let noError = true
     this.expectedParams.forEach(param => {

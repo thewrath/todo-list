@@ -8,11 +8,21 @@ export default class AbstractFilter {
     this.model = model
   }
 
+  /**
+   * @method _filter
+   * @description method to put in the array.filter JS method 
+   */
   _filter (entrie) {
 
   }
 
+  /**
+   * @method reduce
+   * @description method that reduce an array with the given filter 
+   * (take an array and return an array with only elements that match the filter)
+   */
   reduce (entries) {
+    // Check if entries is an array, else we apply the filter directly (on one element)
     if (Array.isArray(entries)) {
       return entries.filter((entry) => {
         return this._filter(entry)

@@ -11,6 +11,10 @@ export default class SQLiteConnector {
     })
   }
 
+  /**
+   * @method _initialize
+   * @description Create tables if not exists and configure SQLite Database 
+   */
   _initialize () {
     this.db.run('CREATE TABLE IF NOT EXISTS TaskState (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)')
     this.db.run('CREATE TABLE IF NOT EXISTS Task (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, dateBegin TEXT, dateEnd TEXT, statut INTEGER, tags TEXT, FOREIGN KEY(statut) REFERENCES TaskState(id))')

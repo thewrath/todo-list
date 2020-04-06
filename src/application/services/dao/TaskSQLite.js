@@ -5,6 +5,10 @@ export default class TaskDAO {
     this.db = connector.db
   }
 
+  /**
+   * @method createTask
+   * @description insert new task in SQLite Database 
+   */
   async createTask (task) {
     return new Promise((resolve, reject) => {
       this.db.serialize(() => {
@@ -26,6 +30,10 @@ export default class TaskDAO {
     })
   }
 
+  /**
+   * @method readTasks
+   * @description return all entries of Task table in the SQLite Database 
+   */
   async readTasks () {
     return new Promise((resolve, reject) => {
       this.db.all('SELECT * FROM Task', [], (err, rows) => {
@@ -37,6 +45,10 @@ export default class TaskDAO {
     })
   }
 
+  /**
+   * @method readTask
+   * @description return entry that match the id give in parameters if exists 
+   */
   async readTask (id) {
     return new Promise((resolve, reject) => {
       this.db.serialize(() => {
@@ -62,6 +74,10 @@ export default class TaskDAO {
     })
   }
 
+  /**
+   * @method updateTask
+   * @description update entry in Task table that conresponding to the given id 
+   */
   async updateTask (task) {
     return new Promise((resolve, reject) => {
       this.db.serialize(() => {
@@ -78,6 +94,10 @@ export default class TaskDAO {
     })
   }
 
+  /**
+   * @method deleteTask
+   * @description delete entry in Task table that conresponding to the given id 
+   */
   async deleteTask (id) {
     return new Promise((resolve, reject) => {
       const stmt = this.db.prepare('DELETE FROM Task WHERE id=?', (err) => {
@@ -92,6 +112,10 @@ export default class TaskDAO {
     })
   }
 
+  /**
+   * @method close
+   * @description close database access 
+   */
   close () {
     this.db.close()
   }

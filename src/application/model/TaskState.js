@@ -6,6 +6,10 @@ export default class TaskState {
     this.name = name
   }
 
+  /**
+   * @method fromJSON
+   * @description create new TaskState from JSON input 
+   */
   static fromJson (json) {
     const taskState = new TaskState(null, null)
     for (const property in taskState) {

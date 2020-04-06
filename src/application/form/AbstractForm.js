@@ -15,6 +15,10 @@ export default class AbstractForm {
     this.error = null
   }
 
+  /**
+   * @method isValid
+   * @description check if all params of post body are correct if they are it return true, else false 
+   */
   isValid () {
     let noError = true
     this.expectedParams.forEach(param => {

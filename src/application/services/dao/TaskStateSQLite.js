@@ -5,7 +5,11 @@ export default class TaskStateDAO {
     this.db = connector.db
   }
 
-  async readTasks () {
+  /**
+   * @method readTaskStates
+   * @description return all entries in the TaskStates table of the SQLite Database 
+   */
+  async readTaskStates () {
     return new Promise((resolve, reject) => {
       this.db.all('SELECT * FROM TaskState', [], (err, rows) => {
         if (err) {

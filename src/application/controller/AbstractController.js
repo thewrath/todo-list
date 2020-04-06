@@ -8,7 +8,11 @@ export default class AbstractController {
     this.routes = []
   }
 
-  sendResponse (h, statusCode, view) {
+  /**
+   * @method _generateResponse
+   * @description generate a ready to send HTTP response 
+   */
+  _generateResponse (h, statusCode, view) {
     return h.response(view.generateOutput()).code(statusCode)
   }
 }
